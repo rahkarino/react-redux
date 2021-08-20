@@ -11,3 +11,15 @@ export const postListAction = () => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const postDetailAction = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "POST_DETAIL_GET" });
+    const { data } = await axios
+      .get(`https://jsonplaceholder.typicode.com/posts/${id}`);
+
+    dispatch({ type: "POST_DETAIL_SUCCESS", payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};

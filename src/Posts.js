@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { postListAction } from "./state/actions/postAction";
 import LoadingImg from "./loading.gif";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const Posts = () => {
   const dispatch = useDispatch();
@@ -17,11 +17,18 @@ const Posts = () => {
   return loading ? (
     <img src={LoadingImg} />
   ) : (
-    <ul>
-      {posts.map((item, index) => {
-        return <li key={index}><Link to="/">{item.title}</Link></li>;
-      })}
-    </ul>
+    <div className="posts">
+      <h3>Display posts from a fake API by redux thunk</h3>
+      <ul>
+        {posts.map((item, index) => {
+          return (
+            <li key={index}>
+              <Link to={`/post/${item.id}`}>{item.title}</Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 
